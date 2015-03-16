@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link href='http://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+		
+		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>  
+		<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>  
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+		<style type="text/css">
+			body{
+				font-size: 1.5em;
+				background-color: #657383;
+				color: #D1D0CE;
+				font-family: 'Roboto';
+			}
+			
+			h1{
+				font-family: 'Roboto';
+				font-weight: bold;
+			}
+			
+			.shoppingPlace{
+				background-color: #25383C;
+			}
+			
+			form{
+				color: black;
+				width: 100%;
+			}
+			
+			.input{
+				background-color: #657383;
+				color: white;
+				border-radius: 30px;
+				margin: 2px;
+				padding-left: 5px;
+				font-size: 1.25em;
+			}
+			.info{
+				background-color: #FFF8C6;
+				color: #25383C;
+			}
+			
+			.listContainer{
+				border: #FFF8C6 3px double;
+				padding: 5px;
+				margin: 5px
+			}
+			
+			.strike{
+				text-decoration: line-through;
+			}
+			
+			#dropdownActivate{
+				text-align: center;
+				padding: 5px;
+			}
+			
+			#dropdownActivate, #dropdownMenu {
+				background-color: #D1D0CE; 
+				color: black;
+				width: 100%;	
+				border: solid 1px #c3c3c3;
+			}
+
+			#dropdownMenu {
+				display: none;
+			}
+
+		</style>
+        <script type="text/javascript">
+		$(document).ready(function() {
+			$('.inputs').focus();
+
+			$(document).on('click', '.addButton', function() {
+				var itemToAdd = $('input[name="inputs"]').val().trim();
+				if ( itemToAdd ) {
+					$('.listItems').append('<div class="input" style="cursor: pointer"><strong><input type="checkbox" name="item" class="item" style="cursor: pointer"/><span class="strikable">'+ '  ' + itemToAdd + '</strong></div></span>');
+				}
+				$('.inputs').val('').focus();
+				$('.achievement1').addClass("btn-success");
+			});
+			
+			
+			$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			});
+			
+			$(document).on('click', '#dropdownActivate', function() {
+				$('#dropdownMenu').slideToggle("slow");
+			});
+			
+			$(document).on('click', '.achievement2', function() {
+				$('.achievement2').addClass("btn-success");
+			});
+			
+			$(document).on('click', '.strikable', function() {
+				$(this).toggleClass("strike");
+				$('.achievement3').addClass("btn-success");
+			});
+			
+			$(document).on('change', '.item', function() {
+				if( $(this).is(':checked') ){
+					var parentElem = $(this).parent();
+					parentElem.effect('puff', 500, function() {
+						parentElem.remove();
+					});
+				}
+				$('.achievement4').addClass("btn-success");
+			});
+			
+			$('.Inputz').submit( function(e) {
+				e.preventDefault();
+				
+				return false;
+			});
+			$('.listItems').sortable();
+		});
+		</script>
+	</head>
+	<body>
+        <div class="container-fluid">
+			<div class = "shoppingPlace col-md-10">
+				<h1 class="heading1">The Online Shopping List</h1>
+				<form class="Inputz">
+					<input type="text" name="inputs" class="inputs" />
+					<label for="inputs"><input type="submit" class="addButton" /></label>
+				</form>
+				
+				<div class="listContainer">
+				
+				<div class="listItems"></div>
+				
+				</div>
+				
+				<div class="info">
+					<p>Welcome to the Online Shopping List!<p>
+					<p>Add, Sort, Check Off and Remove the items you want to buy at your local supermarket and be on your way!</p>
+				</div>
+			</div>
+			<div class = "col-md-2">
+				<div id="dropdownActivate" style="cursor: pointer">Achievements:</div>
+				<div id="dropdownMenu" class="chieves">
+				<div class = "well">
+						<button type="button" class="btn achievement1" data-toggle="tooltip" data-placement="left" title="Input anything!" >
+							<span class="glyphicon glyphicon-off"></span> Let's Get it Started!
+						</button>
+				</div>
+				<div class = "well">
+						<button type="button" class="btn achievement2" data-toggle="tooltip" data-placement="left" title="If you need a hint, I question your IQ.." >
+							<span class="glyphicon glyphicon-off"></span> Click Me!
+						</button>
+				</div>
+				<div class = "well">
+						<button type="button" class="btn achievement3" data-toggle="tooltip" data-placement="left" title="Alright I bought it, time to click it off" >
+							<span class="glyphicon glyphicon-off"></span> Strike me down!
+						</button>
+				</div>
+				<div class = "well">
+						<button type="button" class="btn achievement4" data-toggle="tooltip" data-placement="left" title="You clicked it before you saw this didn't you?" >
+							<span class="glyphicon glyphicon-off"></span> OOO, SQUARE!
+						</button>
+				</div>
+				</div>
+			</div>
+        </div>
+        
+	</body>
+</html>
